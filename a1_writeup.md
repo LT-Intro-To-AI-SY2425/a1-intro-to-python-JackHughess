@@ -21,3 +21,5 @@ I already know a lot about it, but I kind of don't like how you don't explicitly
 Some similarities are all of the same logic like if statements and while loops, but mainly there are differences like not saying data types, no brackets, no i++, classes aren't required which is confusing bc you still use it sometimes.
 
 3. What are some things that you learned through this assignment?
+
+I learned a lot of the different tricks that you can use for python to make a lot of things more condensed and a lot faster to write like a lot of the in built functions and splicing.
