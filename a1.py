@@ -25,7 +25,7 @@ def absolute(n: int) -> int:
     Returns:
         the absolute value of the passed in number
     """
-    raise NotImplementedError("absolute")
+    return -1 * n if n<0 else n
 
 
 def factorial(n: int) -> int:
@@ -38,7 +38,10 @@ def factorial(n: int) -> int:
     Returns:
         factorial of the passed in number
     """
-    raise NotImplementedError("factorial")
+    fin = 1
+    for i in range(1,n+1):
+        fin *= i
+    return fin
 
 
 T = TypeVar("T")
@@ -55,7 +58,8 @@ def every_other(lst: List[T]) -> List[T]:
     Returns:
         a list of every of other item in the original list starting with the first
     """
-    raise NotImplementedError("every_other")
+    return lst[::2]
+        
 
 
 def sum_list(lst: List[int]) -> int:
@@ -68,7 +72,10 @@ def sum_list(lst: List[int]) -> int:
     Returns:
         the sum of the passed in list
     """
-    raise NotImplementedError("sum_list")
+    fin = 0
+    for i in lst:
+        fin += i
+    return fin
 
 
 def mean(lst: List[int]) -> float:
@@ -80,7 +87,12 @@ def mean(lst: List[int]) -> float:
     Returns:
         the mean of the passed in list
     """
-    raise NotImplementedError("mean")
+    fin = 0
+    num = 0
+    for i in lst:
+        num+=1
+        fin += i
+    return fin / num
 
 
 def median(lst: List[int]) -> float:
@@ -95,21 +107,16 @@ def median(lst: List[int]) -> float:
     Returns:
         the median of the passed in list
     """
-    raise NotImplementedError("median")
+    leng = len(lst)
+    if leng%2==1:
+        return lst[int(leng / 2)]
+    else: 
+        return lst[(leng / 2)] + lst[int(leng / 2)+1] / 2
 
 
 def duck_duck_goose(lst: List[str]) -> List[str]:
-    """Given an list of names (strings), play 'duck duck goose' with it, knocking out
+    """Given a list of names (strings), play 'duck duck goose' with it, knocking out
     every third name (wrapping around) until only two names are left.
-
-    In other words, when you hit the end of the list, wrap around and keep counting from
-    where you were.
-
-    For example, if given this list ['Nathan', 'Sasha', 'Sara', 'Jennie'], you'd first
-    knock out Sara. Then first 'duck' on Jennie, wrap around to 'duck' on Nathan and
-    'goose' on Sasha - knocking him out and leaving only Nathan and Jennie.
-
-    You may assume the list has 3+ names to start
 
     Args:
         lst - a list of names (strings)
@@ -117,7 +124,23 @@ def duck_duck_goose(lst: List[str]) -> List[str]:
     Returns:
         the resulting list after playing duck duck goose
     """
-    raise NotImplementedError("duck_duck_goose")
+    index = 0
+    gooseduck = 0
+
+    while len(lst) > 2:
+        if gooseduck == 2:  # Goose (every 3rd person is knocked out)
+            lst.pop(index)  # Remove the person at the current index
+            gooseduck = 0   # Reset the goose/duck counter after popping
+            # Since we removed an element, don't increment index, as the list is now shorter
+        else:
+            index += 1  # Move to the next person
+            gooseduck += 1  # Increment the duck/goose counter
+
+        # Wrap around when index reaches the end of the list
+        if index >= len(lst):
+            index = 0
+
+    return lst
 
 
 # this line causes the nested code to be skipped if the file is imported instead of run
